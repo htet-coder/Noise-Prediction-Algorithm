@@ -1,0 +1,24 @@
+==== get_sampledata_algorithm.py ==== 
+
+---------- GET_SAMPLEDATA_ALGORITHM.PY: 0
+==== Noise_Prediction.py ==== 
+
+---------- NOISE_PREDICTION.PY: 92
+==== Noise_Prediction_algorithm.py ==== 
+
+---------- NOISE_PREDICTION_ALGORITHM.PY: 0
+==== Noise_Prediction_provider.py ==== 
+
+---------- NOISE_PREDICTION_PROVIDER.PY: 100
+==== plugin_upload.py ==== 
+
+---------- PLUGIN_UPLOAD.PY: 111
+==== threshold_limit_algorithm.py ==== 
+
+---------- THRESHOLD_LIMIT_ALGORITHM.PY: 0
+==== urls.py ==== 
+
+---------- URLS.PY: 7
+==== __init__.py ==== 
+
+---------- __INIT__.PY: 39
