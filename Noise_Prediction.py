@@ -41,6 +41,7 @@ import processing
 from qgis.core import QgsProcessingAlgorithm, QgsApplication
 from .Noise_Prediction_provider import NoisePredictionProvider
 from .urls import DOC_PLUGIN_URL
+from .gui.noise_prediction_dialog import NoisePredictionDialog
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
 
 if cmd_folder not in sys.path:
@@ -52,6 +53,7 @@ class NoisePredictionPlugin(object):
     def __init__(self, iface):
         self.provider = None
         self.iface = iface
+        self.dialog = None
         
     def initProcessing(self):
         """Init Processing provider for QGIS >= 3.8."""
@@ -87,6 +89,18 @@ class NoisePredictionPlugin(object):
         #"All of model input CRS and project CRS must be Project Coordinate System (PCS), except Dem File. Please Get Sample Data and run the test for first look")
         QDesktopServices.openUrl(QUrl(DOC_PLUGIN_URL))
         
+    ##def run(self):
+        ##processing.execAlgorithmDialog("Noise Prediction From Point Source:Calculate-BS:5228")
+        
     def run(self):
-        processing.execAlgorithmDialog("Noise Prediction From Point Source:Calculate-BS:5228")
+        """Open the new BS 5228 prediction dialog."""
+
+        if self.dialog is None:
+            self.dialog = NoisePredictionDialog(
+                self.iface.mainWindow()
+            )
+
+        self.dialog.show()
+        self.dialog.raise_()
+        self.dialog.activateWindow()
     
