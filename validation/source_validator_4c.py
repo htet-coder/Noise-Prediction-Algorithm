@@ -110,15 +110,7 @@ class SourceValidator:
     def validate(
         self,
         sources: Iterable[SourceModel],
-        source_specific_mode: bool = False,
     ) -> ValidationReport:
-        """
-        Validate calculation-critical source values.
-
-        Activity and equipment are not required in Simple mode. In
-        Source-Specific mode, missing descriptive metadata is reported as a
-        warning and does not prevent the prediction from running.
-        """
         source_list = list(sources)
 
         report = ValidationReport(
@@ -148,18 +140,6 @@ class SourceValidator:
 
             for message in source.validate():
                 report.add_error(display_id, message)
-
-            if source_specific_mode:
-                if not str(source.activity or "").strip():
-                    report.add_warning(
-                        display_id,
-                        "Activity is not specified.",
-                    )
-                if not str(source.equipment or "").strip():
-                    report.add_warning(
-                        display_id,
-                        "Equipment is not specified.",
-                    )
 
             if source.geometry is None:
                 report.add_error(

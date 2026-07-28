@@ -38,25 +38,21 @@ class SourceModel:
 
         return 10.0 * math.log10(self.duration_hours / reference_hours)
 
-    @staticmethod
-    def _choice_value(value: Any) -> str:
-        """Return a normalized string for plain strings or Enum values."""
-
-        enum_value = getattr(value, "value", value)
-        return str(enum_value).strip().lower()
-
     def validate(self) -> list[str]:
         """
-        Return calculation-critical validation messages for this source.
-
-        Activity and equipment are descriptive metadata, so they are not
-        treated as blocking errors here. The SourceValidator may report them
-        as warnings when Source-Specific mode is active.
+        Returns validation messages for this source.
+        An empty list means the source is valid.
         """
         errors = []
 
         if not self.source_id.strip():
             errors.append("Source ID is missing.")
+
+        if not self.activity.strip():
+            errors.append("Activity is missing.")
+
+        if not self.equipment.strip():
+            errors.append("Equipment is missing.")
 
         if not 0.0 <= self.level_db <= 200.0:
             errors.append("Noise level must be between 0 and 200 dB.")
@@ -73,7 +69,7 @@ class SourceModel:
             "mixed",
         }
 
-        if self._choice_value(self.ground_type) not in valid_ground_types:
+        if self.ground_type.strip().lower() not in valid_ground_types:
             errors.append(
                 "Ground type must be Hard, Soft, or Mixed."
             )
@@ -84,7 +80,7 @@ class SourceModel:
             "full",
         }
 
-        if self._choice_value(self.screening) not in valid_screening_types:
+        if self.screening.strip().lower() not in valid_screening_types:
             errors.append(
                 "Screening must be None, Partial, or Full."
             )
