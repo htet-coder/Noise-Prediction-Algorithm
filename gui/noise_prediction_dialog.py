@@ -75,6 +75,29 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         self.sourceLevelFieldCombo.setFilters(QgsFieldProxyModel.Numeric)
         self.sourceLevelFieldCombo.setLayer(self.sourceLayerCombo.currentLayer())
+        # -----------------------------
+        # Phase 4C Activity Attributes
+        # -----------------------------
+
+        self.activityFieldCombo.setFilters(QgsFieldProxyModel.AllTypes)
+        self.equipmentFieldCombo.setFilters(QgsFieldProxyModel.AllTypes)
+
+        self.durationFieldCombo.setFilters(QgsFieldProxyModel.Numeric)
+        self.groundFieldCombo.setFilters(QgsFieldProxyModel.AllTypes)
+        self.screeningFieldCombo.setFilters(QgsFieldProxyModel.AllTypes)
+        self.reflectionFieldCombo.setFilters(QgsFieldProxyModel.Numeric)
+
+        layer = self.sourceLayerCombo.currentLayer()
+
+        for combo in (
+            self.activityFieldCombo,
+            self.equipmentFieldCombo,
+            self.durationFieldCombo,
+            self.groundFieldCombo,
+            self.screeningFieldCombo,
+            self.reflectionFieldCombo,
+        ):
+            combo.setLayer(layer)        
 
         self.resultsTable.setColumnCount(7)
         self.resultsTable.setHorizontalHeaderLabels([
@@ -143,6 +166,15 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         self._connected_source_layer = layer
         self.sourceLevelFieldCombo.setLayer(layer)
+        for combo in (
+            self.activityFieldCombo,
+            self.equipmentFieldCombo,
+            self.durationFieldCombo,
+            self.groundFieldCombo,
+            self.screeningFieldCombo,
+            self.reflectionFieldCombo,
+        ):
+            combo.setLayer(layer)        
         if layer is not None:
             try:
                 layer.selectionChanged.connect(self._update_layer_status)
