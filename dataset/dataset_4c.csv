@@ -1,0 +1,4 @@
+﻿source_id,activity,equipment,level_db,duration,ground,screening,reflection
+S01,Excavation,Excavator,108,4,Soft,Partial,2
+S02,Haulage,Dump truck,103,6,Hard,None,0
+S03,Breaking,Breaker,112,2,Mixed,Full,1
