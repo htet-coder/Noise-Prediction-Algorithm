@@ -44,6 +44,7 @@ from ..core.bs5228_engine import (
 )
 
 from ..models.source_model import SourceModel
+from ..validation.source_validator import SourceValidator
 
 FORM_CLASS, _ = uic.loadUiType(
     os.path.join(os.path.dirname(__file__), "noise_prediction_dialog.ui")
@@ -60,6 +61,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
         self._connected_source_layer = None
         self._current_output_layer = None
         self._current_receptor_layer = None
+        self._source_validator = SourceValidator()
         self._configure_widgets()
         self._populate_choices()
         self._connect_signals()
@@ -77,7 +79,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
         self.receptorLayerCombo.setFilters(QgsMapLayerProxyModel.Filter.PointLayer)
         self.receptorLayerCombo.setAllowEmptyLayer(True)
 
-        self.sourceLevelFieldCombo.setFilters(QgsFieldProxyModel.Numeric)
+        self.sourceLevelFieldCombo.setFilters(QgsFieldProxyModel.AllTypes)
         self.sourceLevelFieldCombo.setLayer(self.sourceLayerCombo.currentLayer())
 
         # Phase 4C source-specific activity attribute fields.
@@ -215,8 +217,9 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             self.sourceLevelModeLabel.setEnabled(False)
             self.sourceLevelHelpLabel.setText(
                 "Source-Specific mode requires a source-level field. "
-                "Mapped duration, ground, screening and reflection fields "
-                "override the fallback values below."
+                "Numeric fields and text fields containing numeric values are supported. "
+                "Mapped duration, ground, screening and reflection fields override "
+                "the fallback values below."
             )
         else:
             self.sourceLevelModeCombo.setEnabled(True)
@@ -291,7 +294,8 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             QMessageBox.warning(
                 self,
                 "Source-level field required",
-                "Select the numeric source attribute containing the sound level.",
+                "Select the source attribute containing the sound level in dB. "
+                "Numeric fields and text fields containing numeric values are supported.",
             )
             self.sourceLevelFieldCombo.setFocus()
             return False
@@ -317,17 +321,20 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             raise ValueError("Select a numeric source-level attribute field.")
 
         value = feature[field_name]
-        if value is None:
+
+        if value is None or str(value).strip() == "":
             raise ValueError(
-                f"Source {self._source_identifier(feature)} has a NULL value "
-                f"in field '{field_name}'."
+                f"Source {self._source_identifier(feature)} has an empty value "
+                f"in sound-level field '{field_name}'."
             )
+
         try:
-            level = float(value)
+            level = float(str(value).strip())
         except (TypeError, ValueError) as exc:
             raise ValueError(
-                f"Source {self._source_identifier(feature)} has a non-numeric "
-                f"value in field '{field_name}'."
+                f"Source {self._source_identifier(feature)} has an invalid "
+                f"sound-level value in field '{field_name}': {value!r}. "
+                "Enter a numeric value in dB, for example 90 or 90.5."
             ) from exc
         if not 0.0 <= level <= 200.0:
             raise ValueError(
@@ -683,6 +690,26 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         return True
 
+    def _validate_source_models(self, source_models) -> bool:
+        """Validate all source models before starting receptor calculations."""
+
+        report = self._source_validator.validate(
+            source_models,
+            source_specific_mode=self._is_source_specific_mode(),
+        )
+
+        if report.is_valid:
+            return True
+
+        QMessageBox.warning(
+            self,
+            "Source validation failed",
+            report.to_text()
+            + "\n\nCorrect the source attributes and run the calculation again.",
+        )
+        self.tabWidget.setCurrentWidget(self.inputsTab)
+        return False
+
     def calculate_prediction(self) -> None:
         """Calculate cumulative noise from all selected sources at each receptor."""
 
@@ -716,6 +743,9 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
                 self._source_model_from_feature(feature)
                 for feature in source_features
             ]
+
+            if not self._validate_source_models(source_models):
+                return
 
             self.resultsTable.setRowCount(0)
             self._current_output_layer = None
