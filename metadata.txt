@@ -7,33 +7,34 @@ version=1.2.0-beta
 author=Htet Arkar Soe
 email=htetarkar.env.2016@gmail.com
 
-about=Noise Prediction is a QGIS plugin for estimating cumulative construction noise levels at receptor locations. 
-The beta workflow supports multiple point sources, multiple receptors, activity duration correction, hard, soft, and mixed ground conditions, simplified screening attenuation, reflection corrections, source-specific attribute mapping, tabular results, and GIS output layers. The calculation workflow is inspired by principles described in BS 5228 but is a simplified implementation and is not an official or complete implementation of the standard. Results should be independently reviewed before being used for regulatory, contractual, engineering, or environmental compliance decisions.
+about=Noise Prediction is a QGIS plugin for estimating cumulative construction noise levels at receptor locations. The beta workflow supports multiple point sources, multiple receptors, activity duration correction, hard, soft, and mixed ground conditions, simplified screening attenuation, reflection corrections, source-specific attribute mapping, tabular results, and GIS output layers. The calculation workflow is inspired by principles described in BS 5228 but is a simplified implementation and is not an official or complete implementation of the standard. Results should be independently reviewed before being used for regulatory, contractual, engineering, or environmental compliance decisions.
 
-tracker=https://github.com/geohtet/Noise-Prediction-Algorithm/issues
-repository=https://github.com/htet-coder/Noise-Prediction-Algorithm/tree/release/0.5.0-beta
-homepage=https://github.com/htet-coder/Noise-Prediction-Algorithm/blob/release/0.5.0-beta/README.md
+tracker=https://github.com/htet-coder/Noise-Prediction-Algorithm/issues
+repository=https://github.com/htet-coder/Noise-Prediction-Algorithm/tree/release/1.2.0-beta
+homepage=https://github.com/htet-coder/Noise-Prediction-Algorithm/blob/release/1.2.0-beta/README.md
 
 hasProcessingProvider=no
 
-changelog=0.5.0 Beta
-  - Added a Qt Designer-based construction noise prediction interface.
-  - Added cumulative prediction from multiple point sources to multiple receptors.
-  - Added shared-value and source-specific calculation workflows.
-  - Added source attribute mapping and validation.
-  - Added hard, soft, and mixed ground options.
-  - Added manual screening corrections of 0, 5, or 10 dB.
-  - Added manual reflection corrections of 0, 1, or 2 dB.
-  - Added activity and assessment period duration correction.
-  - Added detailed calculation results and GIS output layers.
-  - Added demonstration construction-source and receptor datasets.
-  - Refactored the calculation logic into a testable core engine.
-  - Updated plugin branding and beta-release documentation.
-
+changelog=Version 1.2.0 Beta
+    - Redesigned the construction noise prediction interface using Qt Designer.
+    - Added cumulative prediction from multiple point sources to multiple receptors.
+    - Added shared-value and source-specific calculation workflows.
+    - Added source attribute mapping and validation.
+    - Added hard, soft, and mixed ground condition options.
+    - Added manual screening corrections of 0, 5, or 10 dB.
+    - Added manual reflection corrections of 0, 1, or 2 dB.
+    - Added activity operating time and assessment period duration correction.
+    - Added detailed receptor-level calculation results and statistical summaries.
+    - Added GIS output layers and CSV result export.
+    - Added demonstration construction-source and receptor datasets.
+    - Refactored the calculation logic into a testable core engine.
+    - Added an integrated Help tab with documentation and support links.
+    - Updated plugin branding, documentation, and release information.
+    - Removed the legacy QGIS Processing algorithms and provider.
 tags=noise, construction noise, environmental noise, acoustics, BS 5228, prediction, receptors, QGIS
 
 category=Analysis
 icon=logo.png
-experimental=False
+experimental=True
 deprecated=False
 server=False

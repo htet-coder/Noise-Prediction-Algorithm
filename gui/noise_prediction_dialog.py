@@ -142,7 +142,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
         """Create a scrollable Help, support, and professional-services tab."""
 
         repository_url = (
-            "https://github.com/htet-coder/Noise-Prediction-Algorithm/tree/release/0.5.0-beta"
+            "https://github.com/htet-coder/Noise-Prediction-Algorithm/tree/release/1.2.0-beta"
         )
         documentation_url = f"{repository_url}#readme"
         issues_url = f"{repository_url}/issues"
@@ -519,7 +519,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
                 os.path.dirname(__file__),
                 "..",
                 "dataset",
-                "sample_data_v0.5.0 beta",
+                "sample_data_v1.2.0 beta",
             )
         )
 
@@ -1345,7 +1345,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
                         "dominant_screening": dominant_source.screening.value,
                         "dominant_reflection_db": dominant_source.reflection_db,
                         "dominant_result": round_result(
-                            dominant_result, decimals=1
+                            dominant_result, decimals=2
                         ),
                         "combined_level_db": combined_level,
                     }
@@ -1871,23 +1871,23 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
         )
         ground_attenuation = (
             0.0
-            if abs(result.ground_attenuation_db) < 0.05
+            if abs(result.ground_attenuation_db) < 0.005
             else result.ground_attenuation_db
         )
         self.detailGroundLabel.setText(
             f"−{ground_attenuation:.2f} dB"
             if ground_attenuation > 0
-            else "0.0 dB"
+            else "0.00 dB"
         )
         screening_attenuation = (
             0.0
-            if abs(result.screening_attenuation_db) < 0.05
+            if abs(result.screening_attenuation_db) < 0.005
             else result.screening_attenuation_db
         )
         self.detailScreeningLabel.setText(
             f"−{screening_attenuation:.2f} dB"
             if screening_attenuation > 0
-            else "0.0 dB"
+            else "0.00 dB"
         )
         self.detailReflectionLabel.setText(
             f"+{result.reflection_correction_db:.2f} dB"

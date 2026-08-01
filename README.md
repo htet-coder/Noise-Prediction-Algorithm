@@ -1,6 +1,6 @@
 # 🔊 Noise Prediction
 ![QGIS](https://img.shields.io/badge/QGIS-3.x-green)
-![Version](https://img.shields.io/badge/version-v0.5.0--beta-blue)
+![Version](https://img.shields.io/badge/version-v1.2.0--beta-blue)
 ![License](https://img.shields.io/badge/license-GPL%20v2-orange)
 ![Status](https://img.shields.io/badge/status-Beta-yellow)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
@@ -109,7 +109,7 @@ The easiest way to install the plugin is from the latest release package.
 
 Download the latest plugin ZIP file from the **Releases** page.
 
-**GitHub → Releases → Download `Noise_Prediction_v0.5.0_beta.zip`**
+**GitHub → Releases → Download `Noise_Prediction_v1.2.0_beta.zip`**
 
 *(Replace this with the actual release link after publishing.)*
 
@@ -238,7 +238,7 @@ It is recommended to save the project before starting the analysis.
 The plugin includes demonstration datasets located in:
 
 ```text
-dataset/sample_data_v0.5.0 beta/
+dataset/sample_data_v1.2.0 beta/
 ```
 
 Load the following layers into QGIS:
@@ -448,7 +448,7 @@ The datasets are intended for learning, testing, and demonstrating the plugin's 
 > **Location**
 >
 > ```
-> dataset/sample_data_v0.5.0 beta/
+> dataset/sample_data_v1.2.0 beta/
 > ```
 
 ---
@@ -621,7 +621,7 @@ Future releases will include additional screenshots covering advanced workflows,
 
 # ⚠️ Important Notice & Current Limitations
 
-The **Noise Prediction** plugin is currently released as an **experimental beta version (v0.5.0 Beta)**. It is intended to provide a practical and transparent workflow for estimating construction noise levels within the QGIS environment.
+The **Noise Prediction** plugin is currently released as an **experimental beta version (v1.2.0 Beta)**. It is intended to provide a practical and transparent workflow for estimating construction noise levels within the QGIS environment.
 
 The plugin has been developed primarily for **education, research, preliminary environmental assessment, and decision support**. While every effort has been made to implement a logical and reliable workflow, users should understand the scope and assumptions of the current release.
 
