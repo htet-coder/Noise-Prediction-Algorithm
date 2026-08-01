@@ -1848,13 +1848,13 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         self.distanceResultLabel.setText(str(source_count))
         self.groundResultLabel.setText(str(len(prediction_records)))
-        self.screeningResultLabel.setText(f"{min(levels):.1f} dB")
-        self.reflectionResultLabel.setText(f"{max(levels):.1f} dB")
+        self.screeningResultLabel.setText(f"{min(levels):.2f} dB")
+        self.reflectionResultLabel.setText(f"{max(levels):.2f} dB")
         self.durationResultLabel.setText(
-            f"{sum(levels) / len(levels):.1f} dB"
+            f"{sum(levels) / len(levels):.2f} dB"
         )
         self.beforeDurationResultLabel.setText(highest_receptor)
-        self.predictedResultLabel.setText(f"{max(levels):.1f} dB")
+        self.predictedResultLabel.setText(f"{max(levels):.2f} dB")
 
     def _show_receptor_details(self, record) -> None:
         """Show the calculation breakdown for the selected receptor."""
@@ -1867,7 +1867,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         self.detailReceptorLabel.setText(receptor_id)
         self.detailDistanceLabel.setText(
-            f"−{result.distance_attenuation_db:.1f} dB"
+            f"−{result.distance_attenuation_db:.2f} dB"
         )
         ground_attenuation = (
             0.0
@@ -1875,7 +1875,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             else result.ground_attenuation_db
         )
         self.detailGroundLabel.setText(
-            f"−{ground_attenuation:.1f} dB"
+            f"−{ground_attenuation:.2f} dB"
             if ground_attenuation > 0
             else "0.0 dB"
         )
@@ -1885,22 +1885,22 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             else result.screening_attenuation_db
         )
         self.detailScreeningLabel.setText(
-            f"−{screening_attenuation:.1f} dB"
+            f"−{screening_attenuation:.2f} dB"
             if screening_attenuation > 0
             else "0.0 dB"
         )
         self.detailReflectionLabel.setText(
-            f"+{result.reflection_correction_db:.1f} dB"
+            f"+{result.reflection_correction_db:.2f} dB"
         )
         self.detailDurationLabel.setText(
-            f"{result.duration_correction_db:+.1f} dB"
+            f"{result.duration_correction_db:+.2f} dB"
         )
         self.detailDominantLabel.setText(
             f'{record["dominant_source_id"]}: '
-            f"{result.predicted_level_db:.1f} dB"
+            f"{result.predicted_level_db:.2f} dB"
         )
         self.detailCombinedLabel.setText(
-            f'{record["combined_level_db"]:.1f} dB'
+            f'{record["combined_level_db"]:.2f} dB'
         )
 
     @staticmethod
