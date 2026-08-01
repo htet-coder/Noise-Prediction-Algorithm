@@ -7,7 +7,7 @@ QGIS Plugin
 
 Author      : Htet Arkar Soe
 Copyright   : (C) 2022–2026 Htet Arkar Soe
-Version     : 0.5.0 Beta
+Version     : 1.2.0 Beta
 Repository  : https://github.com/htet-coder/Noise-Prediction-Algorithm
 License     : GNU General Public License v2 or later (GPL-2.0-or-later)
 
@@ -34,10 +34,6 @@ a substitute for detailed acoustic modelling where such analyses are required.
 
 ===============================================================================
 """
-
-__author__ = 'Htet Arkar Soe'
-__date__ = '2022-02-19'
-__copyright__ = '(C) 2022 by Htet Arkar Soe'
 
 # This will get replaced with a git SHA1 when you do a git archive
 
