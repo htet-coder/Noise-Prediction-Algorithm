@@ -7,7 +7,7 @@ QGIS Plugin
 
 Author      : Htet Arkar Soe
 Copyright   : (C) 2022–2026 Htet Arkar Soe
-Version     : 0.5.0 Beta
+Version     : 1.2.0-beta
 Repository  : https://github.com/htet-coder/Noise-Prediction-Algorithm
 License     : GNU General Public License v2 or later (GPL-2.0-or-later)
 
@@ -103,7 +103,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
         super().__init__(parent)
         self.setupUi(self)
         self.setWindowTitle(
-            "Noise Prediction — Construction Noise Assessment (v0.5.0 Beta)"
+            "Noise Prediction — Construction Noise Assessment (v1.2.0 Beta)"
         )
 
         if hasattr(self, "titleLabel"):
@@ -116,7 +116,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         if hasattr(self, "versionLabel"):
             self.versionLabel.setText(
-                "Version 0.5.0 Beta | © 2026 Htet Arkar Soe"
+                "Version 1.2.0 Beta | © 2026 Htet Arkar Soe"
             )
 
         self._setup_help_tab()
@@ -169,7 +169,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             help_tab.setObjectName("helpTab")
             self.helpTab = help_tab
             outer_layout = QVBoxLayout(help_tab)
-            self.tabWidget.addTab(help_tab, "4. Help")
+            self.tabWidget.addTab(help_tab, "Help")
 
         tab_index = self.tabWidget.indexOf(help_tab)
         if tab_index >= 0:
@@ -198,7 +198,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         summary = QLabel(
             "Construction Noise Assessment for QGIS\n"
-            "Version 0.5.0 Beta",
+            "Version 1.2.0 Beta Beta",
             content,
         )
         summary.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -273,7 +273,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
             "practical consulting experience to make construction-noise assessment "
             "more accessible, transparent, and efficient for environmental "
             "professionals.</p>"
-            "<p>The current Version 0.5.0 Beta uses a simplified BS 5228-inspired "
+            "<p>The current Version 1.2.0 Beta Beta uses a simplified BS 5228-inspired "
             "methodology for preliminary assessment. Future releases will expand "
             "the calculation workflow, reporting options, source management, and "
             "other functions based on professional requirements and user feedback.</p>",
@@ -364,7 +364,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
         content_layout.addWidget(final_group)
 
         footer = QLabel(
-            "Noise Prediction Plugin for QGIS | Version 0.5.0 Beta<br>"
+            "Noise Prediction Plugin for QGIS | Version 1.2.0 Beta Beta<br>"
             "Developed by Htet Arkar Soe | © 2022–2026<br>"
             "GNU General Public License v2 or later",
             content,

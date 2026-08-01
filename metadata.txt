@@ -3,11 +3,12 @@ name=Noise Prediction
 qgisMinimumVersion=3.16
 qgisMaximumVersion=3.99
 description=Predict cumulative construction noise levels at receptor locations using source, distance, duration, ground, screening, and reflection inputs.
-version=0.5.0 beta
+version=1.2.0-beta
 author=Htet Arkar Soe
 email=htetarkar.env.2016@gmail.com
 
-about=Noise Prediction is a QGIS plugin for estimating cumulative construction noise levels at receptor locations. The beta workflow supports multiple point sources, multiple receptors, activity duration correction, hard, soft, and mixed ground conditions, simplified screening attenuation, reflection corrections, source-specific attribute mapping, tabular results, and GIS output layers. The calculation workflow is inspired by principles described in BS 5228 but is a simplified implementation and is not an official or complete implementation of the standard. Results should be independently reviewed before being used for regulatory, contractual, engineering, or environmental compliance decisions.
+about=Noise Prediction is a QGIS plugin for estimating cumulative construction noise levels at receptor locations. 
+The beta workflow supports multiple point sources, multiple receptors, activity duration correction, hard, soft, and mixed ground conditions, simplified screening attenuation, reflection corrections, source-specific attribute mapping, tabular results, and GIS output layers. The calculation workflow is inspired by principles described in BS 5228 but is a simplified implementation and is not an official or complete implementation of the standard. Results should be independently reviewed before being used for regulatory, contractual, engineering, or environmental compliance decisions.
 
 tracker=https://github.com/geohtet/Noise-Prediction-Algorithm/issues
 repository=https://github.com/htet-coder/Noise-Prediction-Algorithm/tree/release/0.5.0-beta
