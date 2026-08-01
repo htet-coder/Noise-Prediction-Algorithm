@@ -73,7 +73,7 @@ QTabBar::tab { padding: 7px 18px; }</string>
       <item>
         <widget class="QLabel" name="versionLabel">
           <property name="text">
-            <string>Version 0.5.0 Beta | © 2026 Htet Arkar Soe</string>
+            <string>Version 1.2.0 Beta | © 2026 Htet Arkar Soe</string>
           </property>
           <property name="alignment">
             <set>Qt::AlignCenter</set>
