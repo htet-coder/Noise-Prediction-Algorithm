@@ -198,7 +198,7 @@ class NoisePredictionDialog(QDialog, FORM_CLASS):
 
         summary = QLabel(
             "Construction Noise Assessment for QGIS\n"
-            "Version 1.2.0 Beta Beta",
+            "Version 1.2.0 Beta",
             content,
         )
         summary.setAlignment(Qt.AlignmentFlag.AlignCenter)
